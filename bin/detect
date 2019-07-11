@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Mimetex"
+exit 0
