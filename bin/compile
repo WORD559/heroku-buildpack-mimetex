@@ -28,5 +28,5 @@ fi
 mkdir -p "$build_dir/mimetex"
 PROFILE_PATH="$build_dir/.profile.d/mimetex.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:$build_path/mimetex/mimetex"' >> $PROFILE_PATH
+echo 'export PATH="\$PATH:$build_dir/mimetex/mimetex"' >> $PROFILE_PATH
 cp "$cache_dir/mimetex" "$build_dir/mimetex/mimetex"
