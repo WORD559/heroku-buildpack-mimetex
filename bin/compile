@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cache_dir=$2
+if [ "$cache_dir" -e ""]; then
+  cache_dir="."
+fi
+
+echo "Downloading mimetex source code..."
+wget http://www.forkosh.com/mimetex.zip
+echo "Downloaded!"
+
+echo "Unzipping..."
+unzip mimetex.zip
+echo "Unzipped!"
+
+echo "Compiling..."
+gcc -DAA -O2 mimetex.c gifsave.c -lm -o "$cache_dir/mimetex"
+echo "Compiled!"
+
