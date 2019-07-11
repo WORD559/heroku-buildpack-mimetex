@@ -9,7 +9,7 @@ fi
 mkdir -p "$cache_dir"
 
 if [ -f "$cache_dir/mimetex" ]; then
-  cp "$cache_dir/mimetex" "$build_dir/mimetex"
+  cp "$cache_dir/mimetex" "/usr/local/bin/mimetex"
   exit 0
 fi
 
@@ -25,4 +25,4 @@ echo "Compiling..."
 gcc -DAA -O2 mimetex.c gifsave.c -lm -o "$cache_dir/mimetex"
 echo "Compiled!"
 
-cp "$cache_dir/mimetex" "$build_dir/mimetex"
+cp "$cache_dir/mimetex" "/usr/local/bin/mimetex"
