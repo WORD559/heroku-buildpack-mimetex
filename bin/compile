@@ -10,24 +10,23 @@ mkdir -p "$cache_dir"
 
 if [ -f "$cache_dir/mimetex" ]; then
   echo "Using cached mimetex..."
-  mkdir -p "$build_dir/mimetex"
-  export PATH="$PATH:$build_path/mimetex/mimetex"
-  cp "$cache_dir/mimetex" "$build_dir/mimetex/mimetex"
-  exit 0
+else
+
+  echo "Downloading mimetex source code..."
+  wget http://www.forkosh.com/mimetex.zip
+  echo "Downloaded!"
+
+  echo "Unzipping..."
+  unzip mimetex.zip
+  echo "Unzipped!"
+
+  echo "Compiling..."
+  gcc -DAA -O2 mimetex.c gifsave.c -lm -o "$cache_dir/mimetex"
+  echo "Compiled!"
 fi
 
-echo "Downloading mimetex source code..."
-wget http://www.forkosh.com/mimetex.zip
-echo "Downloaded!"
-
-echo "Unzipping..."
-unzip mimetex.zip
-echo "Unzipped!"
-
-echo "Compiling..."
-gcc -DAA -O2 mimetex.c gifsave.c -lm -o "$cache_dir/mimetex"
-echo "Compiled!"
-
 mkdir -p "$build_dir/mimetex"
-export PATH="$PATH:$build_path/mimetex/mimetex"
+PROFILE_PATH="$build_dir/.profile.d/mimetex.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:$build_path/mimetex/mimetex"' >> $PROFILE_PATH
 cp "$cache_dir/mimetex" "$build_dir/mimetex/mimetex"
